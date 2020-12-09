@@ -9,26 +9,33 @@
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
         <!-- Styles -->
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/load-awesome/line-scale.min.css') }}">
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
         @livewireStyles
+
+        @stack('script-header')
+        
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
+        
         <div class="min-h-screen bg-gray-100">
             @livewire('navigation-dropdown')
-
+            
             <!-- Page Heading -->
-            <header class="bg-white shadow">
+            {{-- <header class="bg-white shadow">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     {{ $header }}
                 </div>
-            </header>
-
+            </header> --}}
+            
             <!-- Page Content -->
             <main>
                 {{ $slot }}
@@ -38,5 +45,7 @@
         @stack('modals')
 
         @livewireScripts
+        @stack('scripts')
+        
     </body>
 </html>

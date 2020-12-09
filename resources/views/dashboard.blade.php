@@ -1,14 +1,28 @@
 <x-app-layout>
-    <x-slot name="header">
+    {{-- <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Dashboard') }}
         </h2>
-    </x-slot>
+    </x-slot> --}}
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <x-jet-welcome />
+    <div>
+        <div class="mx-auto">
+            <div class="bg-white flex flex-col h-screen max-h-screen">
+                <div class="grid grid-cols-12 gap-0 flex-none h-full max-h-full overflow-hidden">
+                    <div class="h-full">
+                        <livewire:sidebar-navigation />
+                    </div>
+                    <div class="col-span-3 h-auto">
+                        {{-- Main Menu --}}
+                        <livewire:main-menu />
+                    </div>
+                    <div class="col-span-4 bg-blue-100">
+                        <livewire:secondary-menu />
+                    </div>
+                    <div class="col-span-4">
+                        {{-- Chatbot --}}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
