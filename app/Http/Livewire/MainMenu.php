@@ -53,9 +53,10 @@ class MainMenu extends Component
 
     public function show_location_detail($index)
     {
-        if (empty($this->loc) || $this->loc['id'] != $this->locations[$index]['id']) {
+        if (empty($this->loc) || $this->loc['id'] != $this->locations[$index]['id'] || session('secondary_menu_visibility') == false) {
+            session(['location' => $this->locations[$index]]);
             $this->loc = $this->locations[$index];
-            $this->emit('show_location_detail', $this->loc);
+            $this->emit('show_location_detail', $this->locations[$index]);
         }
     }
 

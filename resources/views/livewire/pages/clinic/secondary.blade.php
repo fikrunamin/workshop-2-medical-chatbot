@@ -1,9 +1,11 @@
 <div>
-    <h2>Location</h2>
+    <x-secondary-title :heading="$location['title'] ?? 'Clinic Detail'"/>
 
     <div wire:ignore style="width: 100%; height: 300px;" id="mapContainer"></div>
 
-    @php    
-        dump($location)
-    @endphp
+    @if (!empty($location))
+        <div class="px-5">
+            <h2>{{$location['title']}}</h2>
+        </div>
+    @endif
 </div>

@@ -8,9 +8,7 @@ class SidebarNavigation extends Component
 {
     public $page;
 
-    public $location = '';
-
-    protected $listeners = ['show_location_detail'];
+    protected $listeners = [];
 
     public function mount()
     {
@@ -24,17 +22,15 @@ class SidebarNavigation extends Component
 
     public function switch_page($page)
     {
+        $this->page = session('page');
         session(['page' => $page]);
 
         $this->emit('switch_page');
-
         if (session('page') == 'clinic' && $this->page != "clinic") {
             $this->emit('get_clinic');
+            if (session()->has('location')) {
+                $this->emit('show_location_detail', session('location'));
+            }
         }
-    }
-
-    public function show_location_detail($location)
-    {
-        $this->location = $location;
     }
 }

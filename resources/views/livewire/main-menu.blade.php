@@ -1,4 +1,4 @@
-<div>
+<div class="col-span-3 h-screen max-h-screen overflow-y-auto">
     @switch($page)
 
         @case("search")
@@ -7,6 +7,10 @@
 
         @case("clinic")
             @include('livewire.pages.clinic.main')
+        @break
+
+        @case("profile")
+            @include('livewire.pages.profile.main')
         @break
 
         @default

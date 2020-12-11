@@ -8,6 +8,9 @@ module.exports = {
     ],
 
     theme: {
+        maxHeight: {
+            'h-remaining': 'calc(100vh - 100px)',
+        },
         extend: {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
@@ -16,8 +19,6 @@ module.exports = {
     },
 
     variants: {
-        opacity: ['responsive', 'hover', 'focus', 'disabled'],
-    },
 
     plugins: [
         require('@tailwindcss/ui'),

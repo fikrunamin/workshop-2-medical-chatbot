@@ -1,30 +1,33 @@
 {{-- Clinic Page --}}
 
-<div class="flex flex-col justify-center mb-6 p-5 shadow-md">
-    <h1 class="text-lg font-bold">Nearest Clinic</h1>
-    <p>Terdapat<span class="font-bold"> <span id="total-clinic">{{count($locations)}}</span> Klinik Gigi</span> terdekat dari Anda.</p>
+<div class="flex flex-col justify-center sticky top-0 bg-white mb-5 px-5 pb-5 pt-10  shadow-md">
+    <x-main-title icon="local_hospital" heading="NEAREST CLINIC" />
+
+    @if (!empty($locations))
+        <p><span class="font-bold"> <span id="total-clinic">{{count($locations)}}</span> Dental Clinics </span> found closest to you</p>
+    @else
+        <p>Looking for the closest clinics to you...</p>
+    @endif
 </div>
 
-@if (!empty($locations))
-    {{-- List of clinic go here --}}
-    <ul id="list-clinic" class="h-96 overflow-y-scroll">
-        @foreach ($locations as $index => $location)
-            <li class="mt-3 p-5 rounded-lg @if(!empty($loc) && $loc['id'] == $location['id']) bg-blue-100 text-blue-500 @else border-4 border-blue-100 text-blue-500 @endif" wire:click="show_location_detail({{$index}})">
-                <a href="javascript:;">
+<div class="flex flex-col justify-center mb-5">
+    @if (!empty($locations))
+        {{-- List of clinic go here --}}
+        <ul id="list-clinic" class="flex flex-col w-full px-5">
+            @foreach ($locations as $index => $location)
+                <li class="w-full mt-3 p-5 rounded-lg cursor-pointer @if(!empty($loc) && $loc['id'] == $location['id']) bg-blue-500 text-blue-100 @else bg-blue-100 text-blue-500 @endif" wire:click="show_location_detail({{$index}})">
                     <h2>{{$location['title']}}</h2>
-                    <p>{{$location['distance']}}</p>
-                    <p>{{$location['address']['label']}}</p>
-                </a>
-            </li>
-        @endforeach
-    </ul>
-@else
-<div class="flex justify-center">
-    <div>
-        <x-loading />
-    </div>
+                    <p>{{$location['distance'] > 1000 ? number_format((float)($location['distance'] / 1000), 1, '.', '') . " km" : $location['distance'] . " m"}}</p>
+                    <p>{{$location['address']['street'] . ', ' . $location['address']['city']}}</p>
+                </li>
+            @endforeach
+        </ul>
+    @else
+        <div>
+            <x-loading />
+        </div>
+    @endif
 </div>
-@endif
 
 
 {{-- End of Clinic Page --}}

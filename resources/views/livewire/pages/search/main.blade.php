@@ -1,13 +1,14 @@
 {{-- Search or Home Page --}}
-<div class="flex flex-col justify-center mb-6 p-5 shadow-md">
+<div class="flex flex-col justify-center sticky top-0 bg-white mb-5 px-5 pb-5 pt-10 shadow-md">
+    <x-main-title icon="search" heading="SEARCH" />
     <label for="disease" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Search for Disease</label>
     <div class="relative mb-5">
-        <div class="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
-            <span class="material-icons">
+        <div class="inline-flex items-center justify-center absolute right-0 top-0 h-full w-10 text-gray-400">
+            <span class="material-icons text-blue-400">
                 search
             </span>
         </div>
-        <input id="disease" wire:model="search_disease" type="text" name="disease" class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" placeholder="Caries Media" />
+        <input id="disease" wire:model="search_disease" type="text" name="disease" class="text-sm text-base placeholder-gray-500 pl-4 pr-10 rounded-full bg-blue-100 w-full py-2" placeholder="Caries Media" />
     </div>
     
     @if ($search_disease != "")
@@ -19,11 +20,11 @@
         <x-loading />
     </div>
 </div>
-<div>
+<div class="px-5 mb-5">
     @if ($search_disease != "")
-        <ul class="h-96 px-5 overflow-y-scroll" wire:loading.remove>
+        <ul class="flex flex-col justify-center w-full" wire:loading.remove>
             @foreach ($diseases as $disease)
-            <li class="mt-3 p-5 rounded-lg @if($disease->id == $id_disease) bg-blue-100 text-blue-500 @else border-4 border-blue-100 text-blue-500 @endif" wire:click="show_disease_detail({{$disease->id}})">
+            <li class="mt-3 p-5 w-full rounded-lg cursor-pointer @if($disease->id == $id_disease) bg-blue-500 text-blue-100 @else bg-blue-100 text-blue-500 @endif" wire:click="show_disease_detail({{$disease->id}})">
                 <h3>{{ $disease->name }}</h3>
             </li>
             @endforeach
