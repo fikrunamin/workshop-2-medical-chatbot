@@ -16,6 +16,7 @@ class ChatbotSection extends Component
 
     public function mount()
     {
+
         $this->section = Chat::where('id_user', auth()->user()->id)->count() <= 0 ? 'new-user' : 'chat-section';
         $this->messages = Chat::where('id_user', auth()->user()->id)->count() <= 0 ? [] : $this->update_messages();
     }
@@ -30,7 +31,7 @@ class ChatbotSection extends Component
         $this->section = 'chat-section';
 
         if (Chat::where('id_user', auth()->user()->id)->count() <= 0) {
-            $this->messages[] = [
+            $first_message = [
                 'id_user' => auth()->user()->id,
                 'details' => [
                     'sender' => 'bot',
@@ -38,7 +39,8 @@ class ChatbotSection extends Component
                 ],
             ];
 
-            Chat::create($this->messages[0]);
+            Chat::create($first_message);
+            $this->messages = $this->update_messages();
         }
     }
 
@@ -66,7 +68,7 @@ class ChatbotSection extends Component
                     'id_user' => $id_user,
                     'details' => [
                         'sender' => 'bot',
-                        'message' => "It's " . Carbon::now()->format('H:m.') . ' ',
+                        'message' => "It's " . Carbon::now()->format('H:i.') . ' ',
                     ],
                 ];
                 Chat::create($data_message);

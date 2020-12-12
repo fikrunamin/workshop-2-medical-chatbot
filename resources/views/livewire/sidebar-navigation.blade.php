@@ -24,7 +24,7 @@
                     </a>
                   </li>
                   
-                  <hr class="mb-6">
+                  <hr class="mb-6 border-2 rounded-xl border-white">
 
                   <li class="mb-6 flex justify-center">
                     <a href="javascript:;" class="
