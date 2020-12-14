@@ -71,4 +71,9 @@ class SecondaryMenu extends Component
         $this->show_profile_visible = false;
         $this->page = session('page');
     }
+
+    public function refresh_location()
+    {
+        $this->emit('show_location_detail', session('location'));
+    }
 }

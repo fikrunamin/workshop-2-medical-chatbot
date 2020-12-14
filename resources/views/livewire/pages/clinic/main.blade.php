@@ -15,7 +15,7 @@
         {{-- List of clinic go here --}}
         <ul id="list-clinic" class="flex flex-col w-full px-5">
             @foreach ($locations as $index => $location)
-                <li class="w-full mt-3 p-5 rounded-lg cursor-pointer @if(!empty($loc) && $loc['id'] == $location['id']) bg-blue-500 text-blue-100 @else bg-blue-100 text-blue-500 @endif" wire:click="show_location_detail({{$index}})">
+                <li class="w-full mt-3 p-5 rounded-lg cursor-pointer @if(session()->has('location') && session('location')['id'] == $location['id']) bg-blue-500 text-blue-100 @else bg-blue-100 text-blue-500 @endif" wire:click="show_location_detail({{$index}})">
                     <h2>{{$location['title']}}</h2>
                     <p>{{$location['distance'] > 1000 ? number_format((float)($location['distance'] / 1000), 1, '.', '') . " km" : $location['distance'] . " m"}}</p>
                     <p>{{$location['address']['street'] . ', ' . $location['address']['city']}}</p>

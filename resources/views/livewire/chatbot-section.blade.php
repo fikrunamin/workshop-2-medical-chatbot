@@ -1,10 +1,10 @@
-<div id="chatbot" class="
+<div id="chatbot" class="col-span-4
     @if (session('secondary_menu_visibility'))
-        col-span-4
+        sm:col-span-4
     @else
-        col-span-8
+        sm:col-span-8
     @endif
-    h-screen max-h-screen overflow-y-auto">
+    h-screen max-h-screen overflow-y-auto sm:block @if ($visibility) block @else hidden @endif ">
 
     {{-- Chatbot Component goes here --}}
     @switch($section)

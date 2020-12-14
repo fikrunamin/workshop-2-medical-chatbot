@@ -7,8 +7,8 @@
 
     <div>
         <div class="mx-auto">
-            <div class="bg-white flex flex-col h-screen max-h-screen">
-                <div class="grid grid-cols-12 gap-0 flex-none">
+            <div class="bg-white flex flex-col h-screen max-h-screen ">
+                <div class="grid grid-cols-4 sm:grid-cols-12 gap-0 flex-none">
 
                         {{-- Sidebar Navigation --}}
                         <livewire:sidebar-navigation />

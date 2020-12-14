@@ -8,7 +8,10 @@ class SidebarNavigation extends Component
 {
     public $page;
 
-    protected $listeners = [];
+    protected $listeners = [
+        'set_secondary_menu_visibility' => '$refresh',
+        'set_chatbot_visibility' => '$refresh',
+    ];
 
     public function mount()
     {

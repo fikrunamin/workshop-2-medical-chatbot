@@ -15,12 +15,14 @@ class MainMenu extends Component
     public $loc = [];
 
     protected $updatesQueryString = [
-        ['search_disease' => ['except' => '']],
+        ['search_disease' => ['except' => ''],],
     ];
 
     protected $listeners = [
         'switch_page',
-        'get_list_clinic'
+        'get_list_clinic',
+        'set_secondary_menu_visibility' => '$refresh',
+        'set_chatbot_visibility' => '$refresh'
     ];
 
     public function mount()

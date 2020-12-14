@@ -12,13 +12,16 @@ class ChatbotSection extends Component
     public $my_message;
     public $messages;
 
-    protected $listeners = ['set_secondary_menu_visibility' => '$refresh'];
+    public $visibility;
+
+    protected $listeners = ['set_secondary_menu_visibility' => '$refresh', 'chatbot_visibility'];
 
     public function mount()
     {
 
         $this->section = Chat::where('id_user', auth()->user()->id)->count() <= 0 ? 'new-user' : 'chat-section';
         $this->messages = Chat::where('id_user', auth()->user()->id)->count() <= 0 ? [] : $this->update_messages();
+        $this->visibility = session('chatbot_visibility') ?? false;
     }
 
     public function render()
@@ -89,5 +92,12 @@ class ChatbotSection extends Component
             })
             ->toArray();
         return $messages;
+    }
+
+    public function chatbot_visibility($condition)
+    {
+        session(['chatbot_visibility' => $condition]);
+        $this->visibility = $condition;
+        $this->emit('set_chatbot_visibility', $condition);
     }
 }
